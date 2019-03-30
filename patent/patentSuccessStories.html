@@ -1,0 +1,67 @@
+<div ng-hide="vm.done">
+	<center>
+		<img src="img/loading.gif" width="250px" height="250px" />
+	</center>
+</div>
+<div ng-if="vm.done">
+	<!--PUT YOUR HTML HERE!-->
+
+	<div style="margin-top:50px;"> 
+		
+		<input style="float:left; width:20%;" class="form-control mr-sm-2" ng-model="searchPatent" type="search" placeholder="Search Patents" aria-label="Search">
+
+
+		<!-- Button trigger modal -->
+		<button style="float:right;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+			Submit Stories
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<h4 style="text-align: center;" class="modal-title"></h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+					</div>
+				<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScHIyQurOelMITLkZqjS_bqJFb3AifVdQGxi4ot3m-9rczeZg/viewform?embedded=true" width="650" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+				</div>
+			</div>
+		</div>
+		<!-- media layout -->
+		<center>
+			<h1 style="text-shadow: 1px 1px 5px; font-weight: bolder;">{{vm.title}}</h1>
+			<div class="card" ng-repeat="story in vm.stories | filter:searchPatent" style="width: 80%; margin: 10px; margin-bottom: 25px;background-color: azure;border-radius:5px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+				<div class="media" style="padding: 10px;">
+					<div class="media-left">
+						<img class="align-self-start img-thumbnail" style="height: auto;margin-right:200px;" ng-src="{{story.image}}" alt="Generic placeholder image">
+					</div>
+					<div class="media-body">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 style="font-family: -webkit-body;">{{story.header}}</h3>
+								<h6 class="card-subtitle mb-2 text-muted">{{story.faculty}}</h6>
+							</div>
+							<div class="panel-body">
+								<p style="text-align: justify;">{{story.story}}</p>
+								<p style="text-align: justify;">{{story.summary}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</center>
+		<!-- media layout -->
+
+
+
+	</div>
+	<h3 ng-bind="vm.message" align="center"> </h3>
+
+	<button class="btn btn-default btn-sm" ng-click="showTable = !showTable; ">Show Patents</button>
+	<div  ng-show="showTable">
+	<table id="patentsTable" class="table table-striped table-bordered table-hover" datatable="" dt-options="vm.dtOptions" dt-columns="vm.dtColumns" dt-instance="vm.dtInstance"></table>
+
+	</div>
+</div>

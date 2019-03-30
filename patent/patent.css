@@ -1,0 +1,9 @@
+/* Task: PROF-52 | VIP-19, croja022 (add patent feature) */
+
+.fa-yelp-patent {  
+color: #D32323  
+}
+/* User Story: PROF-56 | VIP-19, croja022 (business search infinite scrolling)*/
+.business-search-body{
+    min-height: 600px;
+}

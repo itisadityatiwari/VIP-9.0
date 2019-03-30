@@ -1,0 +1,32 @@
+<!-- User Story: PROF-35 | VIP-19, croja022 (business search feature)
+    Initial file creation and implementation.-->
+<div class="business-search-body">
+    <div class="form-inline">
+        <label for="txtTerm" >What:</label>
+        <input class="form-control" type="text" name="txtTerm" id="txtTerm" ng-model="vm.term">
+        <label for="txtTerm" >Where:</label>
+        <input class="form-control" type="text" name="txtLocation" id="txtLocation" ng-model="vm.location">
+        <button class="btn btn-primary" ng-click="vm.search()"><span class="glyphicon glyphicon-search"></span></button>
+        <select class="form-control" ng-model="vm.database" ng-options="selection as selection for selection in vm.options"></select><br>
+    </div>
+    <div ng-hide="vm.done">
+        <center>
+            <img src="img/loading.gif" width="250px" height="250px" />
+        </center>
+    </div>
+    <div ng-if="vm.done">    
+        <table id="results" datatable="" dt-options="vm.dtOptions" dt-columns="vm.dtColumns" dt-instance="vm.dtInstance" class="display"></table>
+        <!-- User Story: PROF-9 | VIP-19, croja022 (business search report feature) .-->
+        <button ng-if="vm.exported.length" ng-click="vm.copyExported()" class="btn btn-sm">
+            <span class="glyphicon glyphicon-copy"></span> Copy 
+        </button>
+        <button ng-if="vm.exported.length" ng-click="vm.removeExportedAll()" class="btn btn-sm">
+            <span class="glyphicon glyphicon-remove"></span> Remove All 
+        </button>
+        <ul id="exported" class="list-group">
+            <li class="list-group-item" ng-repeat="exported in vm.exported">
+                {{exported}} <span ng-click="vm.removeExported($index)" class="pull-right glyphicon glyphicon-remove"></span>
+            </li>
+        </ul>
+    </div>
+</div>
